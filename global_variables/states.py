@@ -1,0 +1,20 @@
+from vkbottle import BaseStateGroup
+
+
+class BotStates(BaseStateGroup):
+    REG_GET_FULL_NAME = 1
+    REG_GET_GROUP = 2
+    REG_GET_PHONE = 3
+    REG_GET_BIRTH_DATE = 4
+    REG_GET_INST = 5
+    GET_OTHER_PROFILE = 6
+    SET_STRIKE = 7
+    CANCEL_STRIKE = 8
+    RATE_COMP = 9
+    RATE_COMP_NEXT = 10
+    MARK_ABSENT = 11
+    KICK_AC = 12
+    GET_CALENDAR = 13
+    GET_DEADLINE_NAME = 14
+    GET_DEADLINE_TIME = 15
+    ACCEPT_DEADLINE = 16
