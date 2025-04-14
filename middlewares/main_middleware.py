@@ -4,7 +4,7 @@ from vkbottle_types.objects import UsersUserFull
 from vkbottle import BaseMiddleware
 from vkbottle.bot import Message
 
-from orm.database import engine, select
+from orm.database import select
 from orm.models import Student
 
 from handlers.predsed_team import admin_labeler

@@ -5,17 +5,17 @@ from datetime import datetime
 
 
 class Student(Base):
-    __tablename__ = "Student"
+    __abstract__ = True
 
-    id: Mapped[int] = mapped_column(primary_key=True)
     vk_id: Mapped[int]
+    full_name: Mapped[str]
     name: Mapped[str]
 
 
 class AlmostCurator(Student):
     __tablename__ = "AlmostCurator"
 
-    id: Mapped[int] = mapped_column(ForeignKey("Student.id"), primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True)
     group_number: Mapped[str]
     birthday_date = Column(DateTime,)
     strikes_number: Mapped[int] = mapped_column(default=0)
@@ -30,27 +30,25 @@ class AlmostCurator(Student):
     competition_rules_rate: Mapped[float] = mapped_column(default=10)
     competition_additional_rate: Mapped[float] = mapped_column(default=10)
 
-    student = relationship(Student, cascade='all,delete', backref='almostcurator')
-
     def __str__(self):
-        return f'ФИО: {self.name}\n' \
-               f'Группа: {self.group_number}\n' \
-               f'День рождения: {self.birthday_date.strftime("%d.%m.%Y")}\n' \
-               f'Количество страйков: {self.strikes_number}\n' \
-               f'Количество пропусков: {self.meeting_attendance}\n' \
-               f'Тг: {self.inst_or_tg}\n' \
-               f'Номер телефона: {self.phone_number}'
+        return f'👤ФИО: [https://vk.com/id{self.vk_id}|{self.full_name}]\n' \
+               f'Группа: {self.group_number}\n\n' \
+               f'🎂День рождения: {self.birthday_date.strftime("%d.%m.%Y")}\n' \
+               f'📱Тг: {self.inst_or_tg}\n' \
+               f'📞 Номер телефона: {self.phone_number}\n\n' \
+               f'⚠️Количество страйков: {self.strikes_number}\n' \
+               f'❗Количество пропусков: {self.meeting_attendance}\n'
 
     def __repr__(self):
-        return f'ФИО: {self.name}\n' \
-               f'Группа: {self.group_number}\n' \
-               f'День рождения: {self.birthday_date.strftime("%d.%m.%Y")}\n' \
-               f'Количество страйков: {self.strikes_number}\n' \
-               f'Количество пропусков: {self.meeting_attendance}\n' \
-               f'Тг: {self.inst_or_tg}\n' \
-               f'Номер телефона: {self.phone_number}\n\n' \
-               f'Рейтинг: {self.rating}\n' \
-               f'Пропуски: {self.meeting_attendance}\n\n' \
+        return f'👤ФИО: [https://vk.com/id{self.vk_id}|{self.full_name}]\n' \
+               f'Группа: {self.group_number}\n\n' \
+               f'🎂День рождения: {self.birthday_date.strftime("%d.%m.%Y")}\n' \
+               f'📱Тг: {self.inst_or_tg}\n' \
+               f'📞 Номер телефона: {self.phone_number}\n\n' \
+               f'⚠️Количество страйков: {self.strikes_number}\n' \
+               f'❗Количество пропусков: {self.meeting_attendance}\n' \
+               f'Сделал дз: {"Да✔️" if self.hw_completion else "Нет❌"}\n\n' \
+               f'Рейтинг: {self.rating}\n\n' \
                f'Компетенции:\n' \
                f'Активность: {self.competition_activity_rate}\n' \
                f'Ответственность: {self.competition_responsibility_rate}\n' \
@@ -77,11 +75,11 @@ class CompetitionActivity(Competition):
     ac = relationship(AlmostCurator, cascade='all,delete', backref='competition_activity')
 
     def __str__(self):
-        return f'Оценка Феди: {self.fedas_rate}\n' \
-               f'Оценка Иры: {self.iras_rate}\n' \
-               f'Оценка Кати: {self.katyas_rate}\n' \
-               f'Оценка Саши: {self.sashas_rate}\n' \
-               f'Оценка Тёмы: {self.artems_rate}\n' \
+        return f'Оценка Феди: {self.fedas_rate}\n\n' \
+               f'Оценка Иры: {self.iras_rate}\n\n' \
+               f'Оценка Кати: {self.katyas_rate}\n\n' \
+               f'Оценка Саши: {self.sashas_rate}\n\n' \
+               f'Оценка Тёмы: {self.artems_rate}\n\n' \
                f'Оценка Алины: {self.alinas_rate}'
 
 

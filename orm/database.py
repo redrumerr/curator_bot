@@ -1,7 +1,7 @@
 from global_variables.token import SQLALCHEMY_DATABASE_URL
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker, AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
-from sqlalchemy import select, insert, update, delete
+from sqlalchemy import select, insert, update, delete, and_, create_engine, desc, asc
 
 
 engine = create_async_engine(url=SQLALCHEMY_DATABASE_URL)

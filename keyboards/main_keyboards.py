@@ -21,6 +21,7 @@ def main_kb(vk_id) -> Keyboard:
 def admin_kb() -> Keyboard:
     kb = Keyboard()
     kb.add(Text('Матрица компетенций'), color=blue)
+    kb.add(Text('Топы'), color=blue)
     kb.row()
     kb.add(Text('Отметить отсутствующих'), color=blue)
     kb.row()
@@ -54,7 +55,7 @@ def competition_kb() -> Keyboard:
     kb.row()
     kb.add(Text('Ответственность'), color=blue)
     kb.row()
-    kb.add(Text('Взаимодествия'), color=blue)
+    kb.add(Text('Взаимодействия'), color=blue)
     kb.row()
     kb.add(Text('Соблюдение правил'), color=blue)
     kb.row()
@@ -90,4 +91,35 @@ def back_kb() -> Keyboard:
     kb = Keyboard()
     kb.add(Text('Выход'), color=red)
 
+    return kb
+
+
+def choose_deadline_kb(*deadlines) -> Keyboard:
+    kb = Keyboard()
+    for deadline in deadlines:
+        kb.add(Text(deadline), color=blue)
+        kb.row()
+
+    kb.add(Text('Выход'), color=red)
+    return kb
+
+
+def top_kb() -> Keyboard:
+    kb = Keyboard()
+    kb.add(Text('По рейтингу'), color=green)
+    kb.add(Text('По пропускам'), color=blue)
+    kb.add(Text('По страйкам'), color=red)
+    kb.row()
+
+    kb.add(Text('Выход'), color=red)
+    return kb
+
+
+def top_asc_desc_kb() -> Keyboard:
+    kb = Keyboard()
+    kb.add(Text('По возрастанию'), color=green)
+    kb.add(Text('По убыванию'), color=red)
+    kb.row()
+
+    kb.add(Text('Выход'), color=red)
     return kb

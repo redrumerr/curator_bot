@@ -1,8 +1,9 @@
 import asyncio
 from bot_configurator import start_bot
 from orm.database import init_models
-from global_variables.variables import init_schedule
+from handlers.deadlines import load_deadline
 
 if __name__ == "__main__":
-    # asyncio.run(init_models())
-    start_bot()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    start_bot(loop)
